@@ -3,18 +3,17 @@ import React from 'react';
     import { useAuthStore } from '../store/authStore';
     import { Instagram, PlusSquare, User, LogOut, MessageSquare } from 'lucide-react';
 
-    export default function Navbar() {
+    interface NavbarProps {
+      toggleSidebar: () => void;
+    }
+
+    export default function Navbar({ toggleSidebar }: NavbarProps) {
       const { user, profile, signOut } = useAuthStore();
       const navigate = useNavigate();
-      const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
       const handleSignOut = async () => {
         await signOut();
         navigate('/auth');
-      };
-
-      const toggleSidebar = () => {
-        setSidebarOpen(!sidebarOpen);
       };
 
       return (
